@@ -11,6 +11,9 @@ Final Project for ELEN 6770 Spring 2021
 # Organization of this directory
 
 dynamodb folder contains to python files: connectionManager.py and gamController.py. connectionManager.py is used to connect to dynamodb and get the related info. gamController.py is used to make changes on games as well as makes updates.
+
 models folder contains one python file: game.py which is used to getting different information of one game, such as IDs for games and users
+
 static folder contains some local implementations
+
 templates folder contains six html files which are used to create our UI
