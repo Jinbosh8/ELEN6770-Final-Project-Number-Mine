@@ -13,6 +13,8 @@ application.secret_key = str(uuid4())
 cm = CM.ConnectionManager()
 controller = GM.GameController(cm)
 
+# Update user after log-in
+# Fetch gaming info of the user
 @application.route('/')
 @application.route('/index', methods = ["GET", "POST"])
 def index():
@@ -34,10 +36,6 @@ def index():
 
     inviteGames = controller.getGameInvites(session["username"])
     inviteGames = [models.game.Game(inviteGame) for inviteGame in inviteGames]
-    # if inviteGames == None:
-    #     flash("Table has not been created yet, please follow this link to create table.")
-    #     return render_template("table.html",
-    #                             user="")
 
     inProgressGames = controller.getGameInProgress(session["username"])
     inProgressGames = [models.game.Game(inProgressGame) for inProgressGame in inProgressGames]
@@ -51,15 +49,7 @@ def index():
                             inprogress=inProgressGames,
                             finished=fs)
 
-# @application.route('/table', methods=["GET", "POST"])
-# def createTable():
-#     cm.createGamesTable()
-
-#     while controller.checkIfTableIsActive() == False:
-#         time.sleep(3)
-
-#     return redirect('/index')
-
+# Create game for logged in user
 @application.route('/create')
 def create():
 
@@ -69,6 +59,7 @@ def create():
     return render_template("create.html",
                             user=session["username"])
 
+# Take user to game page
 @application.route('/play', methods=["POST"])
 def play():
 
@@ -88,6 +79,7 @@ def play():
     flash("Something went wrong creating the game.")
     return redirect("/create")
 
+# Accept pending invites by logged in user
 @application.route('/accept=<invite>', methods=["POST"])
 def accept(invite):
 
@@ -104,6 +96,7 @@ def accept(invite):
 
     return redirect("/game="+game["GameId"])
 
+# Reject pending invites by logged in user
 @application.route('/reject=<invite>', methods=["POST"])
 def reject(invite):
 
@@ -120,6 +113,7 @@ def reject(invite):
 
     return redirect("/index")
 
+# Get status of the game and update them
 @application.route('/game=<gameId>')
 def game(gameId):
     
@@ -155,6 +149,7 @@ def game(gameId):
                             range_low=rangeState[0],
                             range_high=rangeState[1])
 
+# Validate user's move and update the game
 @application.route('/select=<gameId>', methods=["POST"])
 def selectNumber(gameId):
 
@@ -174,6 +169,7 @@ def selectNumber(gameId):
 
     return redirect("/game="+gameId)
 
+# Validate the existence of the game
 @application.route('/gameData=<gameId>')
 def gameData(gameId):
 
@@ -200,5 +196,5 @@ def logout():
     return redirect("/index")
 
 if __name__ == "__main__":
-#    application.run(debug = True)
+    # application.run(debug = True)
     application.run(host="0.0.0.0", port = 5000)

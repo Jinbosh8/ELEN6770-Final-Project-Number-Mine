@@ -1,5 +1,4 @@
-
-
+# Used for getting different information of one game 
 class Game:
 
     def __init__(self, item):

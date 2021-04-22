@@ -3,6 +3,7 @@ from boto3.dynamodb.conditions import Attr
 from datetime import datetime
 from random import randrange
 
+# make change on games and update them
 class GameController:
 
     def __init__(self, connectionManager):
@@ -31,6 +32,7 @@ class GameController:
             )
         return response
 
+    # get corresponding game info given gameId
     def getGame(self, gameId):
 
         table = self.cm.getGamesTable()
@@ -46,6 +48,7 @@ class GameController:
 
         return response["Item"]
 
+    # Fetch game info for logged in users
     def getGameInvites(self, user):
 
         table = self.cm.getGamesTable()
@@ -83,6 +86,7 @@ class GameController:
         
         return host_resp['Items'] + oppo_resp['Items']
 
+    # update game status
     def acceptGameInvite(self, game):
 
         statusDate = "INPROGRESS_" + str(datetime.now())
@@ -134,6 +138,7 @@ class GameController:
         # except:
         #     return False
 
+    # Return current range in the game
     def getRange(self, item):
         return [str(item['NumRange'][0]), str(item['NumRange'][1])]
 

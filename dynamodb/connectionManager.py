@@ -1,5 +1,6 @@
 import boto3
 
+# Connect to dynamodb and get related info
 class ConnectionManager:
 
     def __init__(self):
@@ -29,5 +30,3 @@ class ConnectionManager:
 
         return self.gamesTable
     
-    # def createGamesTable(self):
-    #     self.gamesTable = createGamesTable(self.db)

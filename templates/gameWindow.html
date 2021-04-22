@@ -13,9 +13,6 @@
         <h1 style="color:red"> {{result_lose}} </h1>
         {% endif %}
         
-        <!-- <div class="slidecontainer">   
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-        </div>  -->
         <br>
         <h3 style="color:rgb(0, 162, 255)"> Current Range: </h3><br>
         <h1 style="color:red"> {{range_low}} ~ {{range_high}} </h1><br>
@@ -24,30 +21,10 @@
             <h3 style="color:rgb(0, 162, 255)"> Your Pick: </h3>
             <input type="range" min="1" max="99" value="50" class="slider" id="myRange", name="userPick", 
                 onchange="updateInput(this.value);" oninput="updateInput(this.value)">                                                       
-            <p id="textInput"></p>
+            {<p id="textInput"></p>}
             <button type="submit" class="playerPick">Confirm!</button>
         </form>
-        <!-- <div class="TTTBoard">
-            <table style="position:relative;">
-                <form action="/select={{gameId}}" method="post">
-                <tr>
-                    <td class="square" ><button type="submit" class="tictactoesquare" name="cell" value="TopLeft"><h1> {{TopLeft}} </h1></button> </td>
-                    <td class="square v"> <button type="submit" class="tictactoesquare" name="cell" value="TopMiddle"><h1>{{TopMiddle}}</h1></button></td>
-                    <td class="square"> <button type="submit" class="tictactoesquare" name="cell" value="TopRight"><h1>{{TopRight}}</h1></button></td>
-                </tr>
-                <tr>
-                    <td class="square h"><button type="submit" class="tictactoesquare" name="cell" value="MiddleLeft"><h1> {{MiddleLeft}}</h1></button></td>
-                    <td class="square v h"> <button type="submit" class="tictactoesquare" name="cell" value="MiddleMiddle"><h1> {{MiddleMiddle}}</h1></button></td>
-                    <td class="square h"> <button type="submit" class="tictactoesquare" name="cell" value="MiddleRight"><h1>{{MiddleRight}}</h1></button></td>
-                </tr>
-                <tr>
-                    <td class="square"> <button type="submit" class="tictactoesquare" name="cell" value="BottomLeft"><h1>{{BottomLeft}}</h1></button></td>
-                    <td class="square v"> <button type="submit" class="tictactoesquare" name="cell" value="BottomMiddle"><h1>{{BottomMiddle}}</h1></button></td>
-                    <td class="square"> <button type="submit" class="tictactoesquare" name="cell" value="BottomRight"><h1>{{BottomRight}}</h1></button></td>
-                </tr>
-                </form>
-            </table>
-         </div> -->
+
          {% block addon %} {% endblock %}
          </center>
     </div>
